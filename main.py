@@ -43,7 +43,7 @@ async def inline_caps(update, context):
                     title=option.upper(),
                     description=options[option]["description"],
                     input_message_content=InputTextMessageContent(
-                        getMessage(option.upper())
+                        getMessage(option)
                     ),
                     thumb_url=options[option]["thumbnail"],
                 )
