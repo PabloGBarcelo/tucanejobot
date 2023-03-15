@@ -1,0 +1,68 @@
+{
+    "PENE": {
+        "description": "Calcula el tamaño de tu miembro",
+        "max": 50,
+        "min": 0,
+        "result": {
+            "default": "🍆 Tu pene mide {} cm.",
+            "min": "🍆 Colega, donde está tu pene {} cm.",
+            "max": "🍆 ¡Toma trabuco! {} cm."
+        },
+        "thumbnail": "http://www.fragadis.es/wp-content/uploads/2020/07/Berenjena1.png"
+    },
+    "PELO": {
+        "description": "¿Cuanto pelo tienes?",
+        "max": 100,
+        "min": 0,
+        "result": {
+            "default": "Tienes un {}% de pelo.",
+            "min": "🧑‍🦲 ¡Estás calvo! {}% de pelo.",
+            "max": "💇‍♂️ Pelasooooo {}% de pelo."
+        },
+        "thumbnail": "https://png.pngtree.com/png-vector/20220624/ourmid/pngtree-hair-icon-vector-logo-template-png-image_5359308.png"
+    },
+    "FAIRY": {
+        "description": "¿Como de fairyman eres?",
+        "max": 100,
+        "min": 0,
+        "result": {
+            "default": "🧴 Eres un {}% de fairyman",
+            "min": "🧴 Dedícate a otra cosa, {}% de fairyman.",
+            "max": "🧴 Eres todo un Pablo {}% superfairyman!.."
+        },
+        "thumbnail": "https://alto1994.com/tienda/188928-large_default/lavavajillas-fairy-original-verde-450-ml-10.jpg"
+    },
+    "FACHA": {
+        "description": "¿Como de facha eres?",
+        "max": 100,
+        "min": 0,
+        "result": {
+            "default": "🏅 Eres {}% facha",
+            "min": "😓 Tu lo que eres es de izquierdas, {}%!.",
+            "max": "🎖️ FACHAAAAAA {}%!."
+        },
+        "thumbnail": "https://stuffedeyes.files.wordpress.com/2018/06/spain-2906824_960_720.png"
+    },
+    "PELIROJO": {
+        "description": "¿Cuanto de pelirojo tienes?",
+        "max": 100,
+        "min": 0,
+        "result": {
+            "default": "Eres {}% pelirrojo.",
+            "min": "Eres {}% pelirrojo.",
+            "max": "El padre de los pelirrojos {}%!."
+        },
+        "thumbnail": "https://static.vecteezy.com/system/resources/previews/002/586/939/non_2x/young-boy-with-hair-red-cartoon-character-round-line-icon-free-vector.jpg"
+    },
+    "AUTONOMO": {
+        "description": "¿Cuanto de autónomo tienes?",
+        "max": 100,
+        "min": 0,
+        "result": {
+            "default": "Eres {}% autónomo",
+            "min": "Así va el país {}% autónomo.",
+            "max": "Aguantando el país si señor, {}% autónomo!."
+        },
+        "thumbnail": "https://cdn-icons-png.flaticon.com/512/3419/3419368.png"
+    }
+}
