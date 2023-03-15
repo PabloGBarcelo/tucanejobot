@@ -1,4 +1,4 @@
-# tucanejobot
+# Tucanejobot
 This is a Telegram bot with python-telegram-bot V20.1 to show a random value in an item selected.
 
 # How to use
