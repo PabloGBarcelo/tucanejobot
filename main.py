@@ -32,11 +32,6 @@ def getMessage(type):
 
     return textToSend.format(percentage)
 
-
-async def unknown(update, context):
-    await update.message.reply_text("Lo siento, no entiendo esa opción.")
-
-
 async def inline_caps(update, context):
     query = update.inline_query.query
     results = list()
