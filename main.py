@@ -35,19 +35,36 @@ def getMessage(type):
 async def inline_caps(update, context):
     query = update.inline_query.query
     results = list()
+    completeResume = ""
     for option in options:
         if query == "" or query == None or option.upper().find(query.upper()) != -1:
+            message = getMessage(option)
+            if options[option]["showInResume"]:
+                completeResume += message + "\n"
             results.append(
                 InlineQueryResultArticle(
                     id=option.upper(),
-                    title=option.upper(),
+                    title=option,
                     description=options[option]["description"],
                     input_message_content=InputTextMessageContent(
-                        getMessage(option)
+                        message
                     ),
                     thumb_url=options[option]["thumbnail"],
                 )
             )
+    
+    # Add summary for Ash
+    results.append(
+        InlineQueryResultArticle(
+            id="RESUMEN",
+            title="Todas las opciones a la vez",
+            description="¡Obten un resumen de todos los tests a la vez!",
+            input_message_content=InputTextMessageContent(
+                completeResume
+            ),
+            thumb_url="https://cdn-icons-png.flaticon.com/512/86/86117.png",
+        )
+    )
     await context.bot.answer_inline_query(update.inline_query.id, results, cache_time=0)
 
 
