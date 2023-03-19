@@ -1,5 +1,6 @@
 {
     "PENE": {
+        "id": "pene",
         "showInResume": false,
         "description": "Calcula el tamaño de tu miembro",
         "max": 50,
