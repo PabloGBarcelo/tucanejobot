@@ -46,7 +46,7 @@ span.din-font {
     height: 52.44px;
 }
 .cardContent > .name {
-    top: 620px;
+    top: 610px;
     width: 98%;
     text-align: center;
     font-size: 52px;
@@ -133,4 +133,11 @@ span.din-font {
 }
 .black{
     color: black;
+}
+
+
+img.character {
+    position: absolute;
+    top: 200px;
+    left: 328px;
 }
