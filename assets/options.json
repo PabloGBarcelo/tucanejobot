@@ -1,14 +1,15 @@
 {
     "PENE": {
-        "showInResume": false,
+        "id": "pene",
+        "showInResume": true,
         "description": "Calcula el tamaño de tu miembro",
         "max": 50,
         "min": 0,
         "result": {
-            "default": "🍆 Tu pene mide {} cm.",
-            "min": "🍆 Tu pene mide {} cm.",
-            "max": "🍆 Tu pene mide {} cm."
+            "default": "🍆 Tu pene mide {} cm",
+            "min": "🍆 Colega, donde está tu pene {} cm",
+            "max": "🍆 ¡Toma trabuco! {} cm"
         },
         "thumbnail": "http://www.fragadis.es/wp-content/uploads/2020/07/Berenjena1.png"
-    }
+    },
 }
