@@ -4,7 +4,6 @@ from telegram import InlineQueryResultArticle, InputTextMessageContent, InputMed
 from telegram.ext import CallbackContext
 from lib.cardGenerator import (
     generateCard,
-    constructOptionToCallback,
 )
 from lib.messages import addResume
 import datetime, os

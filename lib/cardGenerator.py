@@ -1,9 +1,7 @@
-from telegram import InlineQueryResultPhoto
 import os, random
 from pyquery import PyQuery as pq
 from html2image import Html2Image
 from datetime import datetime
-from uuid import uuid4
 import cv2
 
 hti = Html2Image(
@@ -59,7 +57,7 @@ def generateCard(data, name, rootDir):
     # Fill flag path
     htmlString("#flag").attr("src", flagPath)
     data["auton"] = data["autonomo"]
-    
+
     for value in data:
         # Fill text
         htmlString(".cardStaticContent")("." + value.lower())(".din-font").append(
@@ -77,39 +75,3 @@ def generateCard(data, name, rootDir):
     nameFileJPG = nameFile.replace(".png", ".jpg")
     cv2.imwrite(nameFileJPG, image, [int(cv2.IMWRITE_JPEG_QUALITY), 90])
     return nameFileJPG
-
-
-def constructResultPhoto(thumb_url, image_url, width, height, completeResume):
-    return InlineQueryResultPhoto(
-        id=uuid4(),
-        title="Crea una Medalla con tus características",
-        description="¡Muestra con orgullo tu mierda de característicasS!",
-        caption=completeResume,
-        photo_url=image_url,
-        thumbnail_url=thumb_url,
-        photo_width=width,
-        photo_height=height,
-    )
-
-
-def constructOptionToCallback(thumb_url, image_url, width, height, completeResume):
-    return InlineQueryResultPhoto(
-        id="Medalla",
-        title="Crea una Medalla con tus características",
-        description="¡Muestra con orgullo tu mierda de características!",
-        caption=completeResume,
-        photo_url=image_url,
-        thumbnail_url=thumb_url,
-        photo_width=width,
-        photo_height=height,
-        reply_markup={
-            "inline_keyboard": [
-                [
-                    {
-                        "text": "⌛",
-                        "callback_data": "doNothing",
-                    }
-                ]
-            ]
-        },
-    )
