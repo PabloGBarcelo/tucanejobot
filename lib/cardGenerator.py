@@ -77,7 +77,7 @@ def constructResultPhoto(thumb_url, image_url, width, height, completeResume):
         description="¡Muestra con orgullo tu mierda de característicasS!",
         caption=completeResume,
         photo_url=image_url,
-        thumb_url=thumb_url,
+        thumbnail_url=thumb_url,
         photo_width=width,
         photo_height=height,
     )
@@ -87,10 +87,10 @@ def constructOptionToCallback(thumb_url, image_url, width, height, completeResum
     return InlineQueryResultPhoto(
         id="Medalla",
         title="Crea una Medalla con tus características",
-        description="¡Muestra con orgullo tu mierda de característicasS!",
+        description="¡Muestra con orgullo tu mierda de características!",
         caption=completeResume,
         photo_url=image_url,
-        thumb_url=thumb_url,
+        thumbnail_url=thumb_url,
         photo_width=width,
         photo_height=height,
         reply_markup={
