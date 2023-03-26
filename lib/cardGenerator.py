@@ -4,34 +4,41 @@ from html2image import Html2Image
 from datetime import datetime
 import cv2
 from definitions import ROOT_DIR
+from lib.files import getDirectory
 
 hti = Html2Image(
     browser_executable="./chrome/App/Chrome-bin/chrome.exe",
-    custom_flags=["--hide-scrollbars", "--window-size=800,1150"],
+    custom_flags=["--hide-scrollbars", "--window-size=800,1150", "--no-sandbox"],
 )
 
 
-def createFileName():
+def createFileName(html_str):
     now = datetime.now()
     nameFile = "photo" + str(now.strftime("%Y-%m-%d-%H%M%S")) + ".png"
+    hti.screenshot(
+        html_str=html_str,
+        css_file="templates/style.css",
+        save_as=nameFile,
+    )
     return nameFile  # name of photo to upload
 
 
 def generateCard(data, name):
     # Select font color
-    fontColor = random.choice(str(ROOT_DIR) + f"\\assets\\cards\\")
-
+    fontColor = random.choice(
+        os.listdir(str(ROOT_DIR) + getDirectory(["assets", "cards"]))
+    )
     # load random image
     imagePath = (
         str(ROOT_DIR)
-        + f"\\assets\\cards\\{fontColor}\\"
-        + random.choice(os.listdir(f".\\assets\\cards\\{fontColor}\\"))
+        + getDirectory(["assets", "cards", fontColor])
+        + random.choice(os.listdir(f"." + getDirectory(["assets", "cards", fontColor])))
     )
 
     flagPath = (
         str(ROOT_DIR)
-        + f"\\assets\\flags\\"
-        + random.choice(os.listdir(f".\\assets\\flags\\"))
+        + getDirectory(["assets", "flags"])
+        + random.choice(os.listdir(f"." + getDirectory(["assets", "flags"])))
     )
     # calculate average
     dataForAverage = {
@@ -41,7 +48,7 @@ def generateCard(data, name):
     }
     average = str(int(sum(dataForAverage.values()) / len(dataForAverage)))
     # load html
-    htmlString = pq(open("./assets/baseCard.html").read())
+    htmlString = pq(open("./templates/baseCard.html").read())
     # set font color
     htmlString("#container").attr("class", fontColor)
     # Fill name
