@@ -1,19 +1,15 @@
 from telegram import Update
 from lib.messages import getMessage
-from telegram import InlineQueryResultArticle, InputTextMessageContent, InputMediaPhoto
+from telegram import InlineQueryResultArticle, InputTextMessageContent, InputMediaPhoto, InlineQueryResultPhoto
 from telegram.ext import CallbackContext
 from lib.cardGenerator import (
     generateCard,
     constructOptionToCallback,
 )
 from lib.messages import addResume
-import json, datetime, os
+import datetime, os
 from lib.uploadFile import uploadFile
-
-f = open("./assets/options.json", encoding="utf-8")
-options = json.load(f)
-
-ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
+from definitions import ROOT_DIR, options
 
 async def inline_caps(update: Update, context: CallbackContext):
     query = update.inline_query.query
@@ -22,19 +18,34 @@ async def inline_caps(update: Update, context: CallbackContext):
     completeResults = {}
     for option in options:
         if query == "" or query == None or option.upper().find(query.upper()) != -1:
-            message, percentage = getMessage(options[option])
-            completeResults[options[option]["id"]] = percentage
-            if options[option]["showInResume"]:
-                completeResume += message + "\n"
-            results.append(
-                InlineQueryResultArticle(
-                    id=option.upper(),
-                    title=option,
-                    description=options[option]["description"],
-                    input_message_content=InputTextMessageContent(message),
-                    thumbnail_url=options[option]["thumbnail"],
+            if not options[option]['imageGenerator']:
+                message, percentage = getMessage(options[option])
+                completeResults[options[option]["id"]] = percentage
+                if options[option]["showInResume"]:
+                    completeResume += message + "\n"
+                results.append(
+                    InlineQueryResultArticle(
+                        id=option.upper(),
+                        title=option,
+                        description=options[option]["description"],
+                        input_message_content=InputTextMessageContent(message),
+                        thumbnail_url=options[option]["thumbnail"],
+                    )
                 )
-            )
+            else:
+                results.append(
+                    InlineQueryResultPhoto(
+                        id=option.upper(),
+                        title=option,
+                        description=options[option]["description"],
+                        input_message_content=InputTextMessageContent(message),
+                        photo_url=options[option]["thumbnail"],
+                        thumbnail_url=options[option]["thumbnail"],
+                        photo_height=options[option]['height'],
+                        photo_width=options[option]['width'],
+                        reply_markup=options[option]['reply_markup'],
+                    )
+                )
 
     # Add summary for Ash
     results.append(addResume(completeResume))
@@ -56,8 +67,9 @@ async def chosenCardOption(update: Update, context: CallbackContext):
     # Regenerate results
     results = {}
     for option in options:
-        message, percentage = getMessage(option)
-        results[options[option]["id"]] = percentage
+        if not options[option]['imageGenerator']:
+            message, percentage = getMessage(options[option])
+            results[options[option]["id"]] = percentage
     print("Generating card: ", datetime.datetime.now())
     fileName = generateCard(results, username, ROOT_DIR)
 
