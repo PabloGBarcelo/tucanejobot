@@ -46,17 +46,8 @@ async def inline_caps(update: Update, context: CallbackContext):
                     )
                 )
 
-    # Add summary for Ash
+    # Add summary option
     results.append(addResume(completeResume))
-    # results.append(
-    #     constructOptionToCallback(
-    #         "https://static.vecteezy.com/system/resources/thumbnails/004/588/656/small/card-games-simple-black-line-web-icon-illustration-editable-stroke-48x48-pixel-perfect-free-vector.jpg",
-    #         "https://i.ibb.co/q95R3WN/loading-min.jpg",
-    #         800,
-    #         1118,
-    #         "",
-    #     ),
-    # )
 
     await update.inline_query.answer(results, cache_time=0)
 
