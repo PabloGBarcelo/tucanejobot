@@ -49,6 +49,7 @@ async def inline_caps(update: Update, context: CallbackContext):
     if query == "" or query == None or option.upper().find(query.upper()) != -1:
         results.append(addResume(completeResume))
     
+    # No results
     if (len(results) == 0):
          results.append(
             InlineQueryResultArticle(
@@ -71,7 +72,7 @@ async def chosenCardOption(update: Update, context: CallbackContext):
             message, percentage = getMessage(options[option])
             results[options[option]["id"]] = percentage
     print("Generating card: ", datetime.datetime.now())
-    fileName = generateCard(results, username, ROOT_DIR)
+    fileName = generateCard(results, username)
 
     # Upload to imgbb
     print("Uploading card: ", datetime.datetime.now())
