@@ -10,14 +10,9 @@ hti = Html2Image(
 )
 
 
-def createCard(html_str):
+def createFileName():
     now = datetime.now()
     nameFile = "photo" + str(now.strftime("%Y-%m-%d-%H%M%S")) + ".png"
-    result = hti.screenshot(
-        html_str=html_str,
-        css_file="templates/style.css",
-        save_as=nameFile,
-    )
     return nameFile  # name of photo to upload
 
 
@@ -69,7 +64,7 @@ def generateCard(data, name, rootDir):
         )
 
     # create file in temp folder
-    nameFile = createCard(str(htmlString))
+    nameFile = createFileName(str(htmlString))
     # transform to jpg
     image = cv2.imread(nameFile)
     nameFileJPG = nameFile.replace(".png", ".jpg")
