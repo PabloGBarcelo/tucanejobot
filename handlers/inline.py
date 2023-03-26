@@ -46,8 +46,19 @@ async def inline_caps(update: Update, context: CallbackContext):
                 )
 
     # Add summary option
-    results.append(addResume(completeResume))
-
+    if query == "" or query == None or option.upper().find(query.upper()) != -1:
+        results.append(addResume(completeResume))
+    
+    if (len(results) == 0):
+         results.append(
+            InlineQueryResultArticle(
+                id="NoResults",
+                title="Sin resultados",
+                description="No hay ningún test relacionado con tu búsqueda",
+                input_message_content=InputTextMessageContent("🏆 He encontrado el fin del bot!"),
+                thumbnail_url="https://cdn-icons-png.flaticon.com/512/103/103085.png"
+            )
+        )
     await update.inline_query.answer(results, cache_time=0)
 
 async def chosenCardOption(update: Update, context: CallbackContext):
