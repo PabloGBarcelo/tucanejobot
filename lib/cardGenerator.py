@@ -25,13 +25,19 @@ def createCard(html_str):
 
 def generateCard(data, name, rootDir):
     # Select font color
-    fontColor = random.choice(["white","black"])
+    fontColor = random.choice(["white", "black"])
 
     # load random image
     imagePath = (
         str(rootDir)
         + f"\\templates\\cards\\{fontColor}\\"
         + random.choice(os.listdir(f".\\templates\\cards\\{fontColor}\\"))
+    )
+
+    flagPath = (
+        str(rootDir)
+        + f"\\templates\\flags\\"
+        + random.choice(os.listdir(f".\\templates\\flags\\"))
     )
     # calculate average
     dataForAverage = {
@@ -50,6 +56,8 @@ def generateCard(data, name, rootDir):
     htmlString(".cardContent")(".average")(".din-font").append(average)
     # Fill image path
     htmlString("#cardModel").attr("src", imagePath)
+    # Fill flag path
+    htmlString("#flag").attr("src", flagPath)
     data["auton"] = data["autonomo"]
     for value in data:
         # Fill text
