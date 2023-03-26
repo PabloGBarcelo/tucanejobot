@@ -59,6 +59,7 @@ def generateCard(data, name, rootDir):
     # Fill flag path
     htmlString("#flag").attr("src", flagPath)
     data["auton"] = data["autonomo"]
+    
     for value in data:
         # Fill text
         htmlString(".cardStaticContent")("." + value.lower())(".din-font").append(

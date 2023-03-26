@@ -25,7 +25,7 @@ async def inline_caps(update: Update, context: CallbackContext):
                     completeResume += message + "\n"
                 results.append(
                     InlineQueryResultArticle(
-                        id=option.upper(),
+                        id=options[option]['id'],
                         title=option,
                         description=options[option]["description"],
                         input_message_content=InputTextMessageContent(message),
@@ -35,10 +35,9 @@ async def inline_caps(update: Update, context: CallbackContext):
             else:
                 results.append(
                     InlineQueryResultPhoto(
-                        id=option.upper(),
+                        id=options[option]['id'],
                         title=option,
                         description=options[option]["description"],
-                        input_message_content=InputTextMessageContent(message),
                         photo_url=options[option]["thumbnail"],
                         thumbnail_url=options[option]["thumbnail"],
                         photo_height=options[option]['height'],
@@ -49,15 +48,15 @@ async def inline_caps(update: Update, context: CallbackContext):
 
     # Add summary for Ash
     results.append(addResume(completeResume))
-    results.append(
-        constructOptionToCallback(
-            "https://static.vecteezy.com/system/resources/thumbnails/004/588/656/small/card-games-simple-black-line-web-icon-illustration-editable-stroke-48x48-pixel-perfect-free-vector.jpg",
-            "https://i.ibb.co/q95R3WN/loading-min.jpg",
-            800,
-            1118,
-            "",
-        ),
-    )
+    # results.append(
+    #     constructOptionToCallback(
+    #         "https://static.vecteezy.com/system/resources/thumbnails/004/588/656/small/card-games-simple-black-line-web-icon-illustration-editable-stroke-48x48-pixel-perfect-free-vector.jpg",
+    #         "https://i.ibb.co/q95R3WN/loading-min.jpg",
+    #         800,
+    #         1118,
+    #         "",
+    #     ),
+    # )
 
     await update.inline_query.answer(results, cache_time=0)
 
