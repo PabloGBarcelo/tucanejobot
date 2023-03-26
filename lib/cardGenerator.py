@@ -3,6 +3,7 @@ from pyquery import PyQuery as pq
 from html2image import Html2Image
 from datetime import datetime
 import cv2
+from definitions import ROOT_DIR
 
 hti = Html2Image(
     browser_executable="./chrome/App/Chrome-bin/chrome.exe",
@@ -16,21 +17,21 @@ def createFileName():
     return nameFile  # name of photo to upload
 
 
-def generateCard(data, name, rootDir):
+def generateCard(data, name):
     # Select font color
-    fontColor = random.choice(["white", "black"])
+    fontColor = random.choice(str(ROOT_DIR) + f"\\assets\\cards\\")
 
     # load random image
     imagePath = (
-        str(rootDir)
-        + f"\\templates\\cards\\{fontColor}\\"
-        + random.choice(os.listdir(f".\\templates\\cards\\{fontColor}\\"))
+        str(ROOT_DIR)
+        + f"\\assets\\cards\\{fontColor}\\"
+        + random.choice(os.listdir(f".\\assets\\cards\\{fontColor}\\"))
     )
 
     flagPath = (
-        str(rootDir)
-        + f"\\templates\\flags\\"
-        + random.choice(os.listdir(f".\\templates\\flags\\"))
+        str(ROOT_DIR)
+        + f"\\assets\\flags\\"
+        + random.choice(os.listdir(f".\\assets\\flags\\"))
     )
     # calculate average
     dataForAverage = {
@@ -40,7 +41,7 @@ def generateCard(data, name, rootDir):
     }
     average = str(int(sum(dataForAverage.values()) / len(dataForAverage)))
     # load html
-    htmlString = pq(open("./templates/baseCard.html").read())
+    htmlString = pq(open("./assets/baseCard.html").read())
     # set font color
     htmlString("#container").attr("class", fontColor)
     # Fill name
